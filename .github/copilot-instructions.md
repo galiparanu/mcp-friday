@@ -43,21 +43,83 @@ SEBELUM melakukan apapun, AI HARUS:
 
 ### 2️⃣ **Setiap Kali Membuat Perubahan Kode**
 
-AI WAJIB mencatat di FRIDAY memory:
+```markdown
+AI WAJIB mengikuti workflow ini:
 
-```bash
-# Untuk implementasi fitur baru:
-- Buat file di .github/memory/implementations/
-- Format: YYYY-MM-DD-nama-fitur.md
-
-# Untuk keputusan arsitektur:
-- Buat file di .github/memory/decisions/
-- Format: YYYY-MM-DD-keputusan.md
-
-# Untuk bug fixes:
-- Buat file di .github/memory/issues/
-- Format: YYYY-MM-DD-issue-name.md
+1. SEARCH BEST PRACTICES (Context7):
+   - Query dokumentasi library via Context7
+   - Cari best practices & patterns
+   - Review official examples
+   
+2. SEARCH MEMORY (FRIDAY):
+   #friday-search "<topik relevan>"
+   - Cek implementasi yang sudah ada
+   - Review keputusan arsitektur sebelumnya
+   
+3. PLAN (Silent - no output):
+   - Tentukan approach terbaik
+   - Gabungkan best practice + context existing
+   
+4. IMPLEMENT:
+   - Tulis code langsung
+   - Follow best practices dari Context7
+   - Konsisten dengan existing patterns
+   
+5. DOCUMENT (Auto):
+   Buat file di .github/memory/implementations/
+   Format: YYYY-MM-DD-nama-fitur.md
+   
+   Template:
+   - What: Fitur apa yang diimplementasi
+   - Why: Alasan approach ini
+   - How: Best practices yang digunakan
+   - References: Link ke Context7 docs
+   - Code: Key snippets
+   - Tests: Coverage & results
+   
+6. SYNC:
+   #friday-sync (background)
 ```
+
+**Contoh Workflow:**
+```
+User: "Add React authentication with Supabase"
+
+AI Internal Process:
+1. Context7: Query "supabase authentication react best practices"
+   → Dapat: Auth patterns, hooks, error handling
+   
+2. FRIDAY: #friday-search "authentication"
+   → Cek: Ada auth pattern existing? Tidak
+   
+3. Plan: Use Supabase Auth with useAuth hook pattern
+   
+4. Implement: [Code with best practices]
+   
+5. Document: .github/memory/implementations/2025-11-09-supabase-auth.md
+   
+6. Response to user:
+   ✅ Added Supabase authentication
+   - src/auth/useAuth.ts (custom hook)
+   - src/contexts/AuthContext.tsx
+   - tests/auth.test.tsx (24 passing)
+   
+   Best practices applied:
+   - Protected routes pattern
+   - Automatic token refresh
+   - Error boundary handling
+   
+   References: 
+   - Supabase Auth docs (Context7)
+   
+   Docs: .github/memory/implementations/2025-11-09-supabase-auth.md
+```
+
+**PENTING:**
+- Jangan skip Context7 search - ALWAYS cari best practices dulu
+- Gabungkan external docs (Context7) + internal memory (FRIDAY)
+- Dokumentasi WAJIB include references ke best practices
+
 
 ### 3️⃣ **Setiap Selesai Session**
 
@@ -109,21 +171,33 @@ node -e "const fs = require('fs'); const path = '.github/memory/INDEX.md'; conso
 
 ## Why This Approach
 - Alasan teknis
-- Trade-offs
-- Alternatif yang dipertimbangkan
+- Trade-offs yang dipertimbangkan
+- Alternatif yang ditolak
+
+## Best Practices Applied
+- Pattern dari Context7 documentation
+- Industry standards yang diikuti
+- Security considerations
 
 ## Code Samples
 ```typescript
 // Key implementation details
+// Annotated dengan best practice reasoning
 ```
 
+## References
+- Context7 Docs: [Link ke documentation]
+- Official Guides: [Link]
+- Related Patterns: [Link]
+
 ## Testing
-- Unit tests added
-- Manual testing done
-- Edge cases considered
+- Unit tests added: X tests
+- Integration tests: Y tests
+- Manual testing done: [scenarios]
+- Edge cases considered: [list]
 
 ## Next Steps
-- Todo items
+- Todo items if any
 - Known limitations
 - Future improvements
 ```
