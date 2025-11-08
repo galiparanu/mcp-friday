@@ -93,17 +93,10 @@ export async function setupTool(args: any) {
         output.push(`   Error: ${health.error}`);
         output.push("   Falling back to Git-only memory");
       }
-    } else if (enableRedis) {
-      output.push("🔌 Upstash Redis: ⚠️  Not configured");
-      output.push("");
-      output.push("   To enable hybrid memory:");
-      output.push("   1. Visit: https://console.upstash.com");
-      output.push("   2. Create free Redis database");
-      output.push("   3. Add to .env:");
-      output.push("      UPSTASH_REDIS_REST_URL=...");
-      output.push("      UPSTASH_REDIS_REST_TOKEN=...");
     } else {
-      output.push("🔌 Upstash Redis: Disabled (Git-only mode)");
+      // Silent fallback to Git-only
+      output.push("🔌 Memory: Git-only mode");
+      output.push("   (Redis optional - add to .env for hybrid mode)");
     }
 
     output.push("");
@@ -126,14 +119,7 @@ export async function setupTool(args: any) {
     output.push(`Type: ${project.type}`);
     output.push(`Memory: ${stats.mode}`);
     output.push("");
-    output.push("🤖 FRIDAY is now active and ready to assist.");
-    output.push("");
-    output.push("Next steps:");
-    if (!redisEnabled && enableRedis) {
-      output.push("1. Configure Upstash Redis for hybrid memory");
-      output.push("2. Run #friday-sync to sync existing memory");
-    }
-    output.push("3. Start developing - FRIDAY will track changes automatically");
+    output.push("🤖 FRIDAY is ready. What would you like to build?");
     output.push("");
 
     return {

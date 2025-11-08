@@ -1,12 +1,9 @@
 #!/bin/bash
 # FRIDAY Auto-Setup Hook
-# Ensures FRIDAY is always initialized
 
 MEMORY_DIR=".github/memory"
 
 if [ ! -d "$MEMORY_DIR" ]; then
-  echo "🤖 FRIDAY not initialized. Running setup..."
-  node dist/index.js setup
+  echo "🤖 FRIDAY initializing memory..."
+  node dist/index.js setup 2>/dev/null || echo "⚠️  Run: npm install && npm run build"
 fi
-
-echo "✅ FRIDAY is ready"

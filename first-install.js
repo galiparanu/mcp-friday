@@ -113,33 +113,83 @@ async function setupMemoryStructure() {
 }
 
 /**
- * Copy AI protocol files
+ * Setup or update AI protocol files (non-destructive)
  */
 async function setupAIProtocol() {
   log('🤖 Setting up AI protocol...', 'blue');
   
-  const files = [
-    '.github/copilot-instructions.md',
-    '.github/AI-PROTOCOL.md',
-    '.github/RESPONSE-STYLE.md',
-  ];
+  const copilotPath = path.join(process.cwd(), '.github', 'copilot-instructions.md');
   
-  let allExist = true;
-  for (const file of files) {
+  try {
+    // Check if copilot-instructions.md exists
+    await fs.access(copilotPath);
+    
+    // File exists - check if FRIDAY section exists
+    const content = await fs.readFile(copilotPath, 'utf-8');
+    
+    if (content.includes('## 🤖 MANDATORY: Always Use FRIDAY Memory System')) {
+      log('   ✅ AI protocol already configured', 'green');
+      return;
+    }
+    
+    // Add FRIDAY section to existing file (don't overwrite user's instructions)
+    const fridaySection = `
+
+---
+
+## 🤖 MANDATORY: Always Use FRIDAY Memory System
+
+**CRITICAL: Setiap AI assistant (Copilot, Claude, GPT, dll) HARUS mengikuti protokol ini.**
+
+### Quick Start Protocol
+
+1. **SILENT CHECK** - Cek .github/memory/ exists
+2. **AUTO SETUP** - Jika belum ada: #friday-setup (no output)
+3. **LOAD CONTEXT** - #friday-context (silent)
+4. **WORK** - Direct action, no todo lists
+
+**RESPONSE STYLE:**
+- ❌ NO todo lists
+- ❌ NO step-by-step explanations
+- ❌ NO progress reports
+- ✅ Direct action (5-10 lines max)
+
+Example:
+\`\`\`
+🤖 FRIDAY Setup
+✅ Ready (hybrid mode)
+What shall we build?
+\`\`\`
+
+### Memory Commands
+- \`#friday-setup\` - Initialize (once)
+- \`#friday-context\` - Load context (each session)
+- \`#friday-search\` - Search memory (before coding)
+- \`#friday-sync\` - Sync to Redis (after changes)
+
+### Documentation (Auto-create in .github/memory/)
+- implementations/YYYY-MM-DD-feature.md
+- decisions/YYYY-MM-DD-decision.md
+- issues/YYYY-MM-DD-issue.md
+
+**Full Protocol:** .github/AI-PROTOCOL.md
+
+---
+`;
+    
+    await fs.appendFile(copilotPath, fridaySection);
+    log('   ✅ FRIDAY protocol added to existing instructions', 'green');
+    
+  } catch {
+    // File doesn't exist - check if template exists in repo
+    const templatePath = path.join(process.cwd(), '.github', 'copilot-instructions.md');
     try {
-      await fs.access(path.join(process.cwd(), file));
+      await fs.access(templatePath);
+      log('   ✅ AI protocol template exists', 'green');
     } catch {
-      allExist = false;
-      break;
+      log('   ⚠️  AI protocol will be created on first use', 'yellow');
     }
   }
-  
-  if (allExist) {
-    log('   ✅ AI protocol already exists', 'green');
-    return;
-  }
-  
-  log('   ✅ AI protocol files ready', 'green');
 }
 
 /**
