@@ -60,6 +60,7 @@ Add to `.vscode/settings.json` or User Settings:
 ```
 
 FRIDAY will:
+
 - ✅ Detect your project type
 - ✅ Create memory structure
 - ✅ Initialize hybrid memory
@@ -67,25 +68,26 @@ FRIDAY will:
 
 ## 🛠️ MCP Tools
 
-| Tool | Description | Usage |
-|------|-------------|-------|
-| **friday-setup** | One-command initialization | `#friday-setup web` |
-| **friday-search** | Hybrid semantic search | `#friday-search "auth"` |
-| **friday-sync** | Git → Redis synchronization | `#friday-sync` |
-| **friday-context** | Load project context | `#friday-context` |
+| Tool               | Description                 | Usage                   |
+| ------------------ | --------------------------- | ----------------------- |
+| **friday-setup**   | One-command initialization  | `#friday-setup web`     |
+| **friday-search**  | Hybrid semantic search      | `#friday-search "auth"` |
+| **friday-sync**    | Git → Redis synchronization | `#friday-sync`          |
+| **friday-context** | Load project context        | `#friday-context`       |
 
 ## 🧠 Hybrid Memory
 
 ```
 Git Memory (Structured)          Redis Memory (Fast)
 ├── INDEX.md              ←─→    Session context
-├── current-state.md      ←─→    Semantic cache  
+├── current-state.md      ←─→    Semantic cache
 ├── implementations/      ←─→    Quick notes
 ├── decisions/            ←─→    Cross-project data
 └── issues/
 ```
 
 **Modes:**
+
 - **Hybrid** (Git + Redis) - When Upstash configured
 - **Git-only** - Automatic fallback, no Redis needed
 
@@ -123,6 +125,7 @@ Professional AI assistant inspired by Tony Stark's FRIDAY:
 - ✅ Tony Stark-level reliability
 
 **Example:**
+
 ```
 User: "Setup this project"
 
@@ -137,6 +140,7 @@ FRIDAY is now active. How shall we proceed?"
 See [DOCUMENTATION.md](./DOCUMENTATION.md) for complete configuration guide.
 
 **Quick Config:**
+
 ```bash
 # .env
 UPSTASH_REDIS_REST_URL=https://...
@@ -190,6 +194,7 @@ MIT - See [LICENSE](./LICENSE)
 ## 🙏 Acknowledgments
 
 Built with:
+
 - [@modelcontextprotocol/sdk](https://github.com/modelcontextprotocol/sdk)
 - [@upstash/redis](https://github.com/upstash/upstash-redis)
 - TypeScript, Jest, Node.js
@@ -197,8 +202,37 @@ Built with:
 ---
 
 **FRIDAY - Your Professional AI Assistant**  
-*Always operational. Always reliable. Always ready.*
+_Always operational. Always reliable. Always ready._
 
 **Status:** Production Ready ✅  
 **Version:** 1.0.0  
 **Last Updated:** November 8, 2025
+
+
+## 🤖 AI Protocol - FRIDAY Memory System
+
+**IMPORTANT: Semua AI assistant (GitHub Copilot, Claude, ChatGPT) WAJIB mengikuti protocol ini!**
+
+### Untuk AI: Quick Start Commands
+
+```bash
+# 1️⃣ Awal session (WAJIB)
+#friday-context
+
+# 2️⃣ Sebelum implementasi (WAJIB)
+#friday-search "<topik>"
+
+# 3️⃣ Setelah perubahan (WAJIB)
+#friday-sync
+```
+
+### Protocol Rules
+
+1. **Setup Check**: Always verify FRIDAY is initialized
+2. **Context Load**: Load context at session start
+3. **Memory Search**: Search before implementing
+4. **Document**: Create memory files for changes
+5. **Sync**: Sync to Redis after changes
+
+📖 **Full Protocol**: [.github/copilot-instructions.md](.github/copilot-instructions.md)
+
