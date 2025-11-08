@@ -17,10 +17,14 @@ SEBELUM melakukan apapun, AI HARUS:
    - Cek folder `.github/memory/`
    - Cek file `INDEX.md` dan `current-state.md`
 
-2. Jika BELUM ada, jalankan segera:
+2. Jika BELUM ada, jalankan LANGSUNG tanpa bertanya:
    #friday-setup
+   
+   ⚠️ PENTING: Jangan buat todo list, jangan explain, langsung jalankan!
+   ⚠️ Setelah setup selesai, langsung lanjut ke step berikutnya.
+   ⚠️ Jangan tanya user untuk config Redis - langsung cek .env
 
-3. Setelah setup, SELALU load context:
+3. Setelah setup, LANGSUNG load context (tanpa report panjang):
    #friday-context
 
 4. Untuk setiap pertanyaan user, search memory dulu:
@@ -172,20 +176,55 @@ Cara mencegah bug serupa di masa depan.
 
 ### ✅ DO (HARUS Dilakukan)
 
-1. **Selalu cek FRIDAY setup** sebelum coding
-2. **Load context** di awal setiap session: `#friday-context`
-3. **Search memory** sebelum implementasi: `#friday-search "<topik>"`
-4. **Dokumentasi otomatis** untuk setiap perubahan
-5. **Sync ke Redis** setelah changes: `#friday-sync`
-6. **Update current-state.md** secara regular
+1. **Selalu cek FRIDAY setup** sebelum coding (silent check, no output)
+2. **Setup langsung** jika belum ada - NO TODO LIST, NO EXPLANATION
+3. **Load context** di awal setiap session: `#friday-context`
+4. **Search memory** sebelum implementasi: `#friday-search "<topik>"`
+5. **Dokumentasi otomatis** untuk setiap perubahan
+6. **Sync ke Redis** setelah changes: `#friday-sync`
+7. **Update current-state.md** secara regular
+8. **Report singkat** - only results, not process
 
 ### ❌ DON'T (Jangan Dilakukan)
 
-1. **Jangan skip** setup protocol
-2. **Jangan coding** tanpa cek memory dulu
-3. **Jangan lupa** dokumentasi
-4. **Jangan skip** sync ke Redis
-5. **Jangan override** memory tanpa backup
+1. **JANGAN** buat todo list untuk setup FRIDAY
+2. **JANGAN** explain step-by-step saat setup
+3. **JANGAN** tanya user untuk config Redis - cek .env dulu
+4. **JANGAN** report progress detail - langsung kasih hasil
+5. **JANGAN** skip setup protocol
+6. **JANGAN** coding tanpa cek memory dulu
+7. **JANGAN** lupa dokumentasi
+8. **JANGAN** skip sync ke Redis
+9. **JANGAN** override memory tanpa backup
+
+### 🎯 RESPONSE STYLE (PENTING!)
+
+**WHEN USER RUNS `#friday-setup`:**
+
+❌ **JANGAN seperti ini:**
+```
+"I'll create a todo list... 
+Starting setup...
+Progress update...
+What I ran...
+Key results...
+Recommended next steps...
+If you want me to proceed..."
+```
+
+✅ **HARUS seperti ini:**
+```
+"🤖 FRIDAY Setup Running...
+
+✅ Setup Complete!
+   - Memory: .github/memory/ initialized
+   - Mode: hybrid (Git + Redis)
+   - Status: Ready
+
+FRIDAY is now active. What would you like to build?"
+```
+
+**KEEP IT SHORT. KEEP IT ACTIONABLE. NO VERBOSE EXPLANATIONS.**
 
 ---
 
@@ -193,34 +232,41 @@ Cara mencegah bug serupa di masa depan.
 
 ```
 ┌─────────────────────────────────────────┐
-│ 1. AI Start Session                     │
-│    → Run: #friday-context               │
+│ 1. AI Start Session (SILENT)            │
+│    → Check .github/memory/ exists       │
+│    → If NO: #friday-setup (no report)   │
+│    → If YES: #friday-context (silent)   │
 └────────────┬────────────────────────────┘
              │
 ┌────────────▼────────────────────────────┐
 │ 2. User Request                         │
 │    → Run: #friday-search "<topik>"      │
-│    → Load relevant memory               │
+│    → Load relevant memory (silent)      │
 └────────────┬────────────────────────────┘
              │
 ┌────────────▼────────────────────────────┐
 │ 3. Implement Changes                    │
 │    → Write code                         │
 │    → Create memory documentation        │
+│    → NO verbose explanation!            │
 └────────────┬────────────────────────────┘
              │
 ┌────────────▼────────────────────────────┐
-│ 4. Save & Sync                          │
+│ 4. Save & Sync (SILENT)                 │
 │    → Update .github/memory/             │
 │    → Run: #friday-sync                  │
+│    → No progress reports                │
 └────────────┬────────────────────────────┘
              │
 ┌────────────▼────────────────────────────┐
-│ 5. Confirm to User                      │
-│    → Show what was done                 │
-│    → Show what was documented           │
+│ 5. Confirm to User (SHORT)              │
+│    → "✅ Done: [what was built]"        │
+│    → Link to memory doc                 │
+│    → NO step-by-step explanation        │
 └─────────────────────────────────────────┘
 ```
+
+**CRITICAL: Keep responses SHORT and ACTIONABLE. User wants results, not process.**
 
 ---
 
