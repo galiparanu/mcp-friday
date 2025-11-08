@@ -11,62 +11,62 @@
 ### **1. Getting Started**
 Essential documentation for new users.
 
-- **[1.1 README](./README.md)** - Main project overview & quick start
-- **[1.2 FIRST-INSTALL](./FIRST-INSTALL.md)** - First-time installation guide
-- **[1.3 USER-INSTALLATION](./USER-INSTALLATION.md)** - User installation instructions
-- **[1.4 SETUP_COMPLETE](./SETUP_COMPLETE.md)** - Post-setup verification
+- **[1.1 README](./getting-started/1.1-README.md)** - Main project overview & quick start
+- **[1.2 FIRST-INSTALL](./getting-started/1.2-FIRST-INSTALL.md)** - First-time installation guide
+- **[1.3 USER-INSTALLATION](./getting-started/1.3-USER-INSTALLATION.md)** - User installation instructions
+- **[1.4 SETUP_COMPLETE](./getting-started/1.4-SETUP-COMPLETE.md)** - Post-setup verification
 
 ### **2. Core Documentation**
 Main feature and usage documentation.
 
-- **[2.1 DOCUMENTATION](./DOCUMENTATION.md)** - Complete feature documentation
-- **[2.2 CODE_STRUCTURE](./CODE_STRUCTURE.md)** - Codebase organisation
-- **[2.3 MISSION_COMPLETE](./MISSION_COMPLETE.md)** - Project milestones
+- **[2.1 DOCUMENTATION](./core/2.1-DOCUMENTATION.md)** - Complete feature documentation
+- **[2.2 CODE_STRUCTURE](./core/2.2-CODE-STRUCTURE.md)** - Codebase organisation
+- **[2.3 MISSION_COMPLETE](./core/2.3-MISSION-COMPLETE.md)** - Project milestones
 
 ### **3. Development & Quality**
 Technical documentation for developers.
 
-- **[3.1 CODE_AUDIT_REPORT](./CODE_AUDIT_REPORT.md)** - Comprehensive code audit
-- **[3.2 IMPROVEMENTS](./IMPROVEMENTS.md)** - Improvement checklist
-- **[3.3 AI-PROTOCOL-COMPLETE](./AI-PROTOCOL-COMPLETE.md)** - AI protocol documentation
+- **[3.1 CODE_AUDIT_REPORT](./development/3.1-CODE-AUDIT-REPORT.md)** - Comprehensive code audit
+- **[3.2 IMPROVEMENTS](./development/3.2-IMPROVEMENTS.md)** - Improvement checklist
+- **[3.3 AI-PROTOCOL-COMPLETE](./development/3.3-AI-PROTOCOL-COMPLETE.md)** - AI protocol documentation
 
 ### **4. Security & Operations**
 Security and operational guidelines.
 
-- **[4.1 SECURITY](./SECURITY.md)** - Security practices & guidelines
-- **[4.2 PUSH-INSTRUCTIONS](./PUSH-INSTRUCTIONS.md)** - Git workflow instructions
+- **[4.1 SECURITY](./security/4.1-SECURITY.md)** - Security practices & guidelines
+- **[4.2 PUSH-INSTRUCTIONS](./security/4.2-PUSH-INSTRUCTIONS.md)** - Git workflow instructions
 
 ### **5. GitHub Configuration**
 GitHub-specific configuration files.
 
-- **[5.1 copilot-instructions](/.github/copilot-instructions.md)** - AI assistant protocol
-- **[5.2 copilot-template](/.github/COPILOT-INSTRUCTIONS-TEMPLATE.md)** - Copilot template
-- **[5.3 project-analysis-feature](/.github/PROJECT-ANALYSIS-FEATURE.md)** - Analysis feature docs
+- **[5.1 copilot-instructions](./github/5.1-copilot-instructions.md)** - AI assistant protocol
+- **[5.2 copilot-template](./github/5.2-COPILOT-INSTRUCTIONS-TEMPLATE.md)** - Copilot template
+- **[5.3 project-analysis-feature](./github/5.3-PROJECT-ANALYSIS-FEATURE.md)** - Analysis feature docs
 
 ---
 
 ## 🎯 Quick Navigation
 
 ### For New Users
-1. Start with **[1.1 README](./README.md)**
-2. Follow **[1.2 FIRST-INSTALL](./FIRST-INSTALL.md)**
-3. Complete **[1.3 USER-INSTALLATION](./USER-INSTALLATION.md)**
-4. Verify with **[1.4 SETUP_COMPLETE](./SETUP_COMPLETE.md)**
+1. Start with **[1.1 README](./getting-started/1.1-README.md)**
+2. Follow **[1.2 FIRST-INSTALL](./getting-started/1.2-FIRST-INSTALL.md)**
+3. Complete **[1.3 USER-INSTALLATION](./getting-started/1.3-USER-INSTALLATION.md)**
+4. Verify with **[1.4 SETUP_COMPLETE](./getting-started/1.4-SETUP-COMPLETE.md)**
 
 ### For Developers
-1. Read **[2.2 CODE_STRUCTURE](./CODE_STRUCTURE.md)**
-2. Review **[3.1 CODE_AUDIT_REPORT](./CODE_AUDIT_REPORT.md)**
-3. Check **[3.2 IMPROVEMENTS](./IMPROVEMENTS.md)**
-4. Study **[2.1 DOCUMENTATION](./DOCUMENTATION.md)**
+1. Read **[2.2 CODE_STRUCTURE](./core/2.2-CODE-STRUCTURE.md)**
+2. Review **[3.1 CODE_AUDIT_REPORT](./development/3.1-CODE-AUDIT-REPORT.md)**
+3. Check **[3.2 IMPROVEMENTS](./development/3.2-IMPROVEMENTS.md)**
+4. Study **[2.1 DOCUMENTATION](./core/2.1-DOCUMENTATION.md)**
 
 ### For AI Integration
-1. Read **[5.1 copilot-instructions](/.github/copilot-instructions.md)**
-2. Review **[3.3 AI-PROTOCOL-COMPLETE](./AI-PROTOCOL-COMPLETE.md)**
-3. Check **[5.3 project-analysis-feature](/.github/PROJECT-ANALYSIS-FEATURE.md)**
+1. Read **[5.1 copilot-instructions](./github/5.1-copilot-instructions.md)**
+2. Review **[3.3 AI-PROTOCOL-COMPLETE](./development/3.3-AI-PROTOCOL-COMPLETE.md)**
+3. Check **[5.3 project-analysis-feature](./github/5.3-PROJECT-ANALYSIS-FEATURE.md)**
 
 ### For Security
-1. Review **[4.1 SECURITY](./SECURITY.md)**
-2. Follow **[4.2 PUSH-INSTRUCTIONS](./PUSH-INSTRUCTIONS.md)**
+1. Review **[4.1 SECURITY](./security/4.1-SECURITY.md)**
+2. Follow **[4.2 PUSH-INSTRUCTIONS](./security/4.2-PUSH-INSTRUCTIONS.md)**
 
 ---
 
