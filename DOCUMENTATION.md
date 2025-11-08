@@ -60,6 +60,7 @@ Then in VS Code chat:
 Initialize FRIDAY in any project with one command.
 
 **Usage:**
+
 ```
 #friday-setup web
 #friday-setup api
@@ -67,6 +68,7 @@ Initialize FRIDAY in any project with one command.
 ```
 
 **What it does:**
+
 - Auto-detects project type and tech stack
 - Creates `.github/memory/` structure
 - Initializes INDEX.md and current-state.md
@@ -79,12 +81,14 @@ Initialize FRIDAY in any project with one command.
 Intelligent hybrid search across all memory sources.
 
 **Usage:**
+
 ```
 #friday-search "authentication"
 #friday-search "payment integration"
 ```
 
 **Features:**
+
 - Searches Git memory files
 - Searches Redis cache (if configured)
 - Relevance-based ranking
@@ -95,11 +99,13 @@ Intelligent hybrid search across all memory sources.
 Synchronize Git memory to Upstash Redis.
 
 **Usage:**
+
 ```
 #friday-sync git-to-redis
 ```
 
 **What it does:**
+
 - Uploads all memory files to Redis
 - Syncs project index
 - Batch operations for efficiency
@@ -110,12 +116,14 @@ Synchronize Git memory to Upstash Redis.
 Load complete project context.
 
 **Usage:**
+
 ```
 #friday-context standard
 #friday-context full
 ```
 
 **What it loads:**
+
 - INDEX.md (project overview)
 - current-state.md (current status)
 - Recent implementations
@@ -150,6 +158,7 @@ Load complete project context.
 ### Memory Modes
 
 **Hybrid Mode** (when Upstash Redis configured):
+
 - Git for version-controlled documentation
 - Redis for fast global access
 - Intelligent search ranking
@@ -157,6 +166,7 @@ Load complete project context.
 - **Cost:** FREE (Upstash free tier)
 
 **Git-Only Mode** (automatic fallback):
+
 - No Redis required
 - Full functionality maintained
 - Local-only operation
@@ -206,6 +216,7 @@ npm run test:watch
 ```
 
 **Test Coverage:**
+
 - ✅ 32 tests passing
 - ✅ Git Memory Manager (11 tests)
 - ✅ Project Detector (11 tests)
@@ -248,6 +259,7 @@ friday-mcp-server/
 Professional AI assistant inspired by Tony Stark's FRIDAY:
 
 **Characteristics:**
+
 - Professional and respectful
 - Proactive problem-solving
 - Precise and efficient
@@ -255,6 +267,7 @@ Professional AI assistant inspired by Tony Stark's FRIDAY:
 - Tony Stark-level reliability
 
 **Communication Style:**
+
 - Address user as "Sir" when appropriate
 - Concise yet comprehensive
 - Clear status updates
@@ -266,7 +279,7 @@ Professional AI assistant inspired by Tony Stark's FRIDAY:
 User: "Setup this project"
 
 FRIDAY: "Understood, Sir. Initializing project setup...
-✅ Setup complete. 
+✅ Setup complete.
 Project: my-awesome-app
 Type: Web Application
 Memory: Hybrid (Git + Redis)
@@ -289,11 +302,13 @@ npm start            # Run built version
 ### VS Code Integration
 
 1. Build the project:
+
    ```bash
    npm run build
    ```
 
 2. Add to VS Code settings:
+
    ```json
    {
      "mcp.servers": {
@@ -317,6 +332,7 @@ npm start            # Run built version
 FRIDAY runs locally via MCP protocol. No server deployment needed.
 
 For team usage:
+
 - Share Upstash Redis instance
 - Version control `.github/memory/` in Git
 - Each team member runs FRIDAY locally
@@ -328,12 +344,15 @@ For team usage:
 ### Memory Management
 
 1. **After implementing features:**
+
    ```
    #friday-context
    ```
+
    Ensure memory is updated
 
 2. **Sync to Redis periodically:**
+
    ```
    #friday-sync git-to-redis
    ```
@@ -362,6 +381,7 @@ For team usage:
 ```
 
 **Solution:**
+
 1. Check `.env` credentials
 2. Verify Upstash dashboard
 3. Test connection manually
@@ -375,6 +395,7 @@ Run #friday-setup first
 ```
 
 **Solution:**
+
 ```
 #friday-setup auto-detect
 ```
@@ -420,7 +441,7 @@ npm run build
 ✅ Context-aware responses  
 ✅ Graceful fallbacks  
 ✅ Health monitoring  
-✅ 100% FREE tier compatible  
+✅ 100% FREE tier compatible
 
 ---
 
@@ -439,6 +460,7 @@ This is a personal AI agent project. Feel free to fork and customize for your ne
 ## 💬 Support
 
 For issues or questions:
+
 1. Check documentation
 2. Review test files for examples
 3. Inspect memory files in `.github/memory/`
@@ -446,7 +468,7 @@ For issues or questions:
 ---
 
 **FRIDAY - Your Professional AI Assistant**  
-*Always operational. Always reliable. Always ready.*
+_Always operational. Always reliable. Always ready._
 
 ---
 
