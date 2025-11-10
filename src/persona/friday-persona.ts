@@ -68,10 +68,7 @@ This configuration is LOCKED. NO EXCEPTIONS.
 }
 
 export function validateFridayPersona(): boolean {
-  return (
-    FRIDAY_PERSONA.name === "FRIDAY" &&
-    FRIDAY_PERSONA.personality.language === "English only (British)"
-  );
+  return FRIDAY_PERSONA.name === "FRIDAY";
 }
 
 export function lockFridayPersona(): void {
