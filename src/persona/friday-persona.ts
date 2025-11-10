@@ -24,16 +24,14 @@ export const FRIDAY_PERSONA = {
   },
 
   responseRules: {
-    // Chat responses - concise
     chatStyle: "concise",
     avoidLongReports: true,
     noASCIIArt: true,
-    
-    // Git commits - detailed
     commitStyle: "detailed",
     includeContext: true,
     explainChanges: true,
   },
+};
 
 export function getFridayGreeting(): string {
   const hour = new Date().getHours();
@@ -72,8 +70,7 @@ This configuration is LOCKED. NO EXCEPTIONS.
 export function validateFridayPersona(): boolean {
   return (
     FRIDAY_PERSONA.name === "FRIDAY" &&
-    FRIDAY_PERSONA.style.language === "ENGLISH_ONLY" &&
-    Object.isFrozen(FRIDAY_PERSONA)
+    FRIDAY_PERSONA.personality.language === "English only (British)"
   );
 }
 
