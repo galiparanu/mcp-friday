@@ -17,6 +17,8 @@ import { searchTool } from "./tools/search.js";
 import { syncTool } from "./tools/sync.js";
 import { contextTool } from "./tools/context.js";
 import { greetingTool } from "./tools/greeting.js";
+import { SmartSearchStrategy, formatSmartSearchResults } from "./tools/smart-search.js";
+import { ConfigLoader } from "./utils/config-loader.js";
 
 const server = new Server(
   {
@@ -72,6 +74,18 @@ const server = new Server(
           description: "Greet FRIDAY and get project status",
           inputSchema: { type: "object", properties: {} },
         },
+        {
+          name: "friday-smart-search",
+          description: "Smart search for new features (local → upstash → context7)",
+          inputSchema: {
+            type: "object",
+            properties: {
+              query: { type: "string", description: "Feature or topic to search for" },
+              featureContext: { type: "string", description: "Additional context (optional)" },
+            },
+            required: ["query"],
+          },
+        },
       ],
     };
   });
@@ -96,6 +110,22 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       case "friday-greeting":
         return await greetingTool();
+
+      case "friday-smart-search": {
+        const config = ConfigLoader.load();
+        const smartSearch = new SmartSearchStrategy(config.projectRoot);
+        const query = (args as any)?.query || "";
+        const featureContext = (args as any)?.featureContext;
+        const result = await smartSearch.search(query, featureContext);
+        return {
+          content: [
+            {
+              type: "text",
+              text: formatSmartSearchResults(result),
+            },
+          ],
+        };
+      }
 
       default:
         throw new Error(`Unknown tool: ${name}`);
