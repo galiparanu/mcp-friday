@@ -5,6 +5,7 @@ Complete browser automation and DevTools access for FRIDAY MCP Server, powered b
 ## 🚀 Features
 
 ### Core Browser Automation
+
 - **Navigation** - Navigate to URLs, use history (back/forward/reload)
 - **Screenshots** - Capture full page or viewport screenshots
 - **JavaScript Execution** - Execute scripts and extract data
@@ -15,6 +16,7 @@ Complete browser automation and DevTools access for FRIDAY MCP Server, powered b
 ## 📚 Tools Available
 
 ### 1. `browser-navigate`
+
 Navigate to URL or use browser history.
 
 ```json
@@ -36,6 +38,7 @@ Navigate to URL or use browser history.
 ```
 
 **Parameters:**
+
 - `url` (string, optional) - URL to navigate to
 - `action` (string, optional) - "back" | "forward" | "reload"
 - `timeout` (number, optional) - Navigation timeout in ms
@@ -44,6 +47,7 @@ Navigate to URL or use browser history.
 ---
 
 ### 2. `browser-screenshot`
+
 Capture screenshots of the current page.
 
 ```json
@@ -68,6 +72,7 @@ Capture screenshots of the current page.
 ```
 
 **Parameters:**
+
 - `format` (string, optional) - "png" | "jpeg" | "webp" (default: "png")
 - `quality` (number, optional) - 0-100 for jpeg/webp (default: 90)
 - `fullPage` (boolean, optional) - Capture full scrollable page (default: false)
@@ -76,6 +81,7 @@ Capture screenshots of the current page.
 ---
 
 ### 3. `browser-evaluate`
+
 Execute JavaScript in the browser context.
 
 ```json
@@ -97,12 +103,14 @@ Execute JavaScript in the browser context.
 ```
 
 **Parameters:**
+
 - `function` (string, required) - JavaScript function as string
 - `args` (array, optional) - Arguments to pass to function
 
 ---
 
 ### 4. `browser-tabs`
+
 Manage browser tabs.
 
 ```json
@@ -134,12 +142,14 @@ Manage browser tabs.
 ```
 
 **Parameters:**
+
 - `action` (string, required) - "list" | "create" | "select" | "close"
 - `index` (number, optional) - Tab index for select/close actions
 
 ---
 
 ### 5. `browser-console`
+
 Access browser console messages.
 
 ```json
@@ -162,12 +172,14 @@ Access browser console messages.
 ```
 
 **Parameters:**
+
 - `action` (string, required) - "list" | "clear"
 - `onlyErrors` (boolean, optional) - Filter to show only errors (default: false)
 
 ---
 
 ### 6. `browser-click`
+
 Click elements on the page.
 
 ```json
@@ -191,6 +203,7 @@ Click elements on the page.
 ```
 
 **Parameters:**
+
 - `selector` (string, required) - CSS selector for element
 - `button` (string, optional) - "left" | "right" | "middle" (default: "left")
 - `clickCount` (number, optional) - Number of clicks (default: 1)
@@ -198,6 +211,7 @@ Click elements on the page.
 ---
 
 ### 7. `browser-type`
+
 Type text into input fields.
 
 ```json
@@ -211,6 +225,7 @@ Type text into input fields.
 ```
 
 **Parameters:**
+
 - `selector` (string, required) - CSS selector for input element
 - `text` (string, required) - Text to type
 - `delay` (number, optional) - Delay between keystrokes in ms (default: 0)
@@ -218,6 +233,7 @@ Type text into input fields.
 ---
 
 ### 8. `browser-press`
+
 Press keyboard keys.
 
 ```json
@@ -239,6 +255,7 @@ Press keyboard keys.
 ```
 
 **Parameters:**
+
 - `key` (string, required) - Key or key combination to press
 
 ---
@@ -427,6 +444,7 @@ npm test
 ```
 
 **Test Coverage:**
+
 - Browser Manager: 12 tests
 - Browser Configuration: 19 tests
 - Navigation, Screenshots, Evaluate, Tabs, Console, Interactions
@@ -455,12 +473,14 @@ npm test
 ## 📅 Roadmap
 
 ### Phase 2: DevTools Integration (Next)
+
 - CDP session access
 - Network monitoring
 - Performance tracing
 - Accessibility tree
 
 ### Phase 3: Advanced Features
+
 - PDF generation
 - Device emulation
 - Storage management
@@ -471,6 +491,7 @@ npm test
 ## 🤝 Contributing
 
 Browser tools follow FRIDAY's architecture:
+
 - TypeScript strict mode
 - Comprehensive tests
 - Clear error messages

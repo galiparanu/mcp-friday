@@ -28,6 +28,11 @@ import {
   browserClickTool,
   browserTypeTool,
   browserPressTool,
+  browserPerformanceTool,
+  browserNetworkTool,
+  browserPdfTool,
+  browserEmulateTool,
+  browserStorageTool,
 } from "./tools/browser/index.js";
 import { cleanupBrowserManager } from "./browser/index.js";
 
@@ -196,6 +201,76 @@ const server = new Server(
             required: ["key"],
           },
         },
+        {
+          name: "browser-performance",
+          description: "Performance tracing and metrics",
+          inputSchema: {
+            type: "object",
+            properties: {
+              action: { type: "string", enum: ["start", "stop", "metrics"] },
+            },
+            required: ["action"],
+          },
+        },
+        {
+          name: "browser-network",
+          description: "Network throttling, blocking, and monitoring",
+          inputSchema: {
+            type: "object",
+            properties: {
+              action: { type: "string", enum: ["throttle", "block", "monitor"] },
+              throttleType: { type: "string", enum: ["Fast 3G", "Slow 3G", "Offline", "None"] },
+              blockedUrls: { type: "array", items: { type: "string" } },
+            },
+            required: ["action"],
+          },
+        },
+        {
+          name: "browser-pdf",
+          description: "Generate PDF from current page",
+          inputSchema: {
+            type: "object",
+            properties: {
+              filePath: { type: "string" },
+              format: { type: "string", enum: ["A4", "Letter", "Legal"] },
+              landscape: { type: "boolean" },
+              printBackground: { type: "boolean" },
+            },
+          },
+        },
+        {
+          name: "browser-emulate",
+          description: "Device emulation, geolocation, timezone, viewport",
+          inputSchema: {
+            type: "object",
+            properties: {
+              action: { type: "string", enum: ["device", "geolocation", "timezone", "viewport"] },
+              device: { type: "string" },
+              latitude: { type: "number" },
+              longitude: { type: "number" },
+              timezone: { type: "string" },
+              width: { type: "number" },
+              height: { type: "number" },
+            },
+            required: ["action"],
+          },
+        },
+        {
+          name: "browser-storage",
+          description: "Manage cookies, localStorage, sessionStorage",
+          inputSchema: {
+            type: "object",
+            properties: {
+              action: { type: "string", enum: ["get-cookies", "set-cookie", "clear-cookies", "local-storage", "session-storage"] },
+              name: { type: "string" },
+              value: { type: "string" },
+              domain: { type: "string" },
+              path: { type: "string" },
+              key: { type: "string" },
+            },
+            required: ["action"],
+          },
+        },
       ],
     };
   });
@@ -260,6 +335,21 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       case "browser-press":
         return await browserPressTool(args);
+
+      case "browser-performance":
+        return await browserPerformanceTool(args);
+
+      case "browser-network":
+        return await browserNetworkTool(args);
+
+      case "browser-pdf":
+        return await browserPdfTool(args);
+
+      case "browser-emulate":
+        return await browserEmulateTool(args);
+
+      case "browser-storage":
+        return await browserStorageTool(args);
 
       default:
         throw new Error(`Unknown tool: ${name}`);
