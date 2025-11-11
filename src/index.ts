@@ -19,6 +19,17 @@ import { contextTool } from "./tools/context.js";
 import { greetingTool } from "./tools/greeting.js";
 import { SmartSearchStrategy, formatSmartSearchResults } from "./tools/smart-search.js";
 import { ConfigLoader } from "./utils/config-loader.js";
+import {
+  browserNavigateTool,
+  browserScreenshotTool,
+  browserEvaluateTool,
+  browserTabsTool,
+  browserConsoleTool,
+  browserClickTool,
+  browserTypeTool,
+  browserPressTool,
+} from "./tools/browser/index.js";
+import { cleanupBrowserManager } from "./browser/index.js";
 
 const server = new Server(
   {
@@ -86,6 +97,105 @@ const server = new Server(
             required: ["query"],
           },
         },
+        {
+          name: "browser-navigate",
+          description: "Navigate browser to URL or use history navigation",
+          inputSchema: {
+            type: "object",
+            properties: {
+              url: { type: "string" },
+              action: { type: "string", enum: ["back", "forward", "reload"] },
+              timeout: { type: "number" },
+              waitUntil: { type: "string", enum: ["load", "domcontentloaded", "networkidle"] },
+            },
+          },
+        },
+        {
+          name: "browser-screenshot",
+          description: "Capture screenshot of current page",
+          inputSchema: {
+            type: "object",
+            properties: {
+              format: { type: "string", enum: ["png", "jpeg", "webp"] },
+              quality: { type: "number" },
+              fullPage: { type: "boolean" },
+              filePath: { type: "string" },
+            },
+          },
+        },
+        {
+          name: "browser-evaluate",
+          description: "Execute JavaScript in browser context",
+          inputSchema: {
+            type: "object",
+            properties: {
+              function: { type: "string" },
+              args: { type: "array" },
+            },
+            required: ["function"],
+          },
+        },
+        {
+          name: "browser-tabs",
+          description: "Manage browser tabs (list, create, select, close)",
+          inputSchema: {
+            type: "object",
+            properties: {
+              action: { type: "string", enum: ["list", "create", "select", "close"] },
+              index: { type: "number" },
+            },
+            required: ["action"],
+          },
+        },
+        {
+          name: "browser-console",
+          description: "View or clear browser console messages",
+          inputSchema: {
+            type: "object",
+            properties: {
+              action: { type: "string", enum: ["list", "clear"] },
+              onlyErrors: { type: "boolean" },
+            },
+            required: ["action"],
+          },
+        },
+        {
+          name: "browser-click",
+          description: "Click an element on the page",
+          inputSchema: {
+            type: "object",
+            properties: {
+              selector: { type: "string" },
+              button: { type: "string", enum: ["left", "right", "middle"] },
+              clickCount: { type: "number" },
+            },
+            required: ["selector"],
+          },
+        },
+        {
+          name: "browser-type",
+          description: "Type text into an input field",
+          inputSchema: {
+            type: "object",
+            properties: {
+              selector: { type: "string" },
+              text: { type: "string" },
+              delay: { type: "number" },
+            },
+            required: ["selector", "text"],
+          },
+        },
+        {
+          name: "browser-press",
+          description: "Press a keyboard key",
+          inputSchema: {
+            type: "object",
+            properties: {
+              key: { type: "string" },
+            },
+            required: ["key"],
+          },
+        },
       ],
     };
   });
@@ -127,6 +237,30 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         };
       }
 
+      case "browser-navigate":
+        return await browserNavigateTool(args);
+
+      case "browser-screenshot":
+        return await browserScreenshotTool(args);
+
+      case "browser-evaluate":
+        return await browserEvaluateTool(args);
+
+      case "browser-tabs":
+        return await browserTabsTool(args);
+
+      case "browser-console":
+        return await browserConsoleTool(args);
+
+      case "browser-click":
+        return await browserClickTool(args);
+
+      case "browser-type":
+        return await browserTypeTool(args);
+
+      case "browser-press":
+        return await browserPressTool(args);
+
       default:
         throw new Error(`Unknown tool: ${name}`);
     }
@@ -149,6 +283,19 @@ async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
   console.error("FRIDAY MCP Server running on stdio");
+
+  // Cleanup on exit
+  process.on("SIGINT", async () => {
+    console.error("\nShutting down FRIDAY MCP Server...");
+    await cleanupBrowserManager();
+    process.exit(0);
+  });
+
+  process.on("SIGTERM", async () => {
+    console.error("\nShutting down FRIDAY MCP Server...");
+    await cleanupBrowserManager();
+    process.exit(0);
+  });
 }
 
 main().catch((error) => {
